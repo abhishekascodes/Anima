@@ -1,0 +1,27 @@
+name,purpose,quantity,unit_cents,total_cents,link,vendor,owned
+TowerPro MG996R Metal Gear Servo,Base joint actuator for 24 modular limbs (high torque),24,484,11616,https://robu.in/product/mg996r-metal-gear-servo-motor/,Robu.in,false
+TowerPro MG90S Metal Gear Micro Servo,Tip/elbow joint actuator for 24 modular limbs,24,248,5952,https://robu.in/product/mg90s-micro-servo-motor-metal-gear/,Robu.in,false
+EMAX ES08MD II Digital Metal Gear Servo,3-axis high-precision pan/tilt/roll eye gimbal actuators,3,1418,4254,https://robu.in/product/emax-es08md-ii-mini-digital-metal-gear-servo/,Robu.in,false
+Base-Joint Miniature Ball Bearings 688ZZ (Pack of 24),Radial load-bearing pivots to protect MG996R servo output shafts,1,1420,1420,https://www.amazon.in/dp/B08X3K9P7V,Amazon India,false
+EMBEST CAM8200-U 5MP USB Camera Module,Vision tracking sensor mounted in 3-axis mechanical eye,1,2600,2600,https://robu.in/product/5mp-usb-camera-module-with-mic-auto-focus/,Robu.in,false
+INMP441 Omnidirectional Digital I2S Microphone,Acoustic voice capture for on-device wake words and audio streaming,1,180,180,https://robu.in/product/inmp441-omnidirectional-microphone-module-i2s-interface/,Robu.in,false
+MAX98357A I2S 3W Class-D Audio Amplifier,Digital audio amplifier for organic creature vocalization,1,220,220,https://robu.in/product/max98357a-i2s-3w-class-d-amplifier-module/,Robu.in,false
+4 Ohm 3W Micro Cavity Speaker Chamber,Internal hub speaker for acoustic feedback and speech synthesis,1,190,190,https://robu.in/product/4-ohm-3w-mini-speaker-chamber/,Robu.in,false
+WS2812B 5050 RGB LED 16-Bit Ring,Gaze target indicator and system fault status ring around camera,1,290,290,https://robu.in/product/ws2812-5050-rgb-led-ring-16-bit/,Robu.in,false
+ESP32-S3-WROOM-1-N16R8 Module,"Central controller for kinematics, 51-ch PWM, I2S audio, and USB telemetry",1,520,520,https://robu.in/product/esp32-s3-wroom-1-n16r8-module/,Robu.in,false
+PCA9685PW TSSOP-28 16-Channel PWM Driver IC,I2C PWM generation for 51 servo channels across 4 chips,4,185,740,https://robu.in/product/pca9685pw-118-nxp-semiconductors-tssop-28/,Robu.in,false
+INA219AIDR Current Sensor IC SOIC-8,Current sensing per 4-limb bank for virtual touch and stall detection,6,140,840,https://robu.in/product/ina219aidr-ti-soic-8/,Robu.in,false
+74HCT245 Octal Bus Transceiver TSSOP-20,3.3V to 5V logic line buffer for long limb wire harness noise immunity,2,65,130,https://robu.in/product/74hct245-octal-bus-transceiver-sop-20/,Robu.in,false
+Industrial SMPS Power Supply 6V 35A 210W,Regulated mains power supply for 51 high-torque servos,1,3310,3310,https://www.amazon.in/dp/B08X4NXQ8M,Amazon India,false
+Custom 4-Layer SMT PCB Fabrication (5 pcs),"Custom mainboard integrating ESP32-S3, PCA9685, INA219, and power rails",1,2360,2360,https://robu.in/,Robu.in,false
+SMD Current Shunt Resistors 0.01 Ohm 2W 2512 (Pack of 10),Precision current sense shunts for 6 INA219 channels,1,320,320,https://robu.in/product/0-01-ohm-2512-current-sensing-resistor-10pcs/,Robu.in,false
+Low ESR Electrolytic Capacitors 1000uF 16V (Pack of 10),Bulk decoupling capacitors for 6 high-current servo banks,1,240,240,https://robu.in/product/1000uf-16v-electrolytic-capacitor-10pcs/,Robu.in,false
+Automotive Mini Blade Fuse Holder with 5A Fuses (Pack of 6),Overcurrent protection per 4-limb bank,1,380,380,https://www.amazon.in/dp/B07T7MY34G,Amazon India,false
+16mm Latching Industrial Emergency Stop Button,Chassis-mounted physical master power disconnect,1,420,420,https://robu.in/product/16mm-emergency-stop-push-button-switch/,Robu.in,false
+XT60H Male and Female Connectors with Wire (5 Pairs),High-current quick-disconnect for mains SMPS power bus,1,350,350,https://robu.in/product/amass-xt60h-male-female-connector-5-pairs/,Robu.in,false
+3-Pin 2.54mm Breakaway Male Header Pins (Pack of 5),"Gold-plated servo signal, power, and ground bank headers",1,180,180,https://robu.in/product/40-pin-2-54mm-male-single-row-header-strip-5pcs/,Robu.in,false
+Laser-Cut Acrylic and Aluminum Structural Plates,Precision laser cut plates for 24 limbs (120mm/100mm) and central hub,1,14200,14200,https://robu.in/,Robu.in,false
+M3 Stainless Steel Socket Head Screw Assortment (500 pcs),"M3x6, M3x8, M3x12, M3x16 fasteners with locknuts for limb pivots",1,780,780,https://www.amazon.in/dp/B08CZ81D2W,Amazon India,false
+6mm Braided Cable Sleeving 10m,Organized cable management through 6mm limb raceways,1,350,350,https://robu.in/product/6mm-braided-cable-sleeving-10m/,Robu.in,false
+Padded Transport Flight Hard Case,Protective travel flight case under 10kg packed weight target,1,2950,2950,https://www.amazon.in/dp/B07V2Q7V89,Amazon India,false
+Consolidated Domestic Ground Shipping,Domestic insured freight across suppliers inside India,1,1200,1200,https://robu.in/,Robu.in,false

@@ -1,0 +1,10 @@
+# Private planning and administrative research
+planning/
+research/
+# Local credentials and generated caches
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pio/
