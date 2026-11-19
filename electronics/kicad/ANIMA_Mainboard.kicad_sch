@@ -1,0 +1,42 @@
+(kicad_sch (version 20231120) (generator eeschema)
+  (uuid "d0f85b88-5151-4040-a000-000000000001")
+  (paper "A3")
+  (title_block
+    (title "ANIMA 51-Axis Bio-Robotic Master Controller")
+    (date "2026-11-20")
+    (rev "v1.0")
+    (company "Abhishek A S - ANIMA Robotics")
+    (comment 1 "ESP32-S3 Architecture with 4x PCA9685 PWM and 6x INA219 Current Telemetry")
+    (comment 2 "Designed for Hack Club Fallen - Maker Faire Shenzhen 2026")
+  )
+
+  (text "SECTION 1: POWER DISTRIBUTION AND REGULATION\nInput: 6V 35A Mains SMPS via XT60\nProtection: 6x 5A Mini Blade Fuses (One per 4-Limb Bank)\nLogic Supply: 6V to 3.3V LDO Regulator (AP2112K-3.3)" (at 25 35 0) (effects (font (size 2.5 2.5) bold)))
+  (text "[POWER INPUT: 6V 35A]\nXT60 Connector\n+6V_MAIN -> Main High-Current Bus\nGND -> Central Star Ground" (at 30 55 0) (effects (font (size 2.0 2.0))))
+  (text "[LOGIC REGULATOR]\nAP2112K-3.3\nVIN: +6V_MAIN\nVOUT: +3.3V (ESP32 and I2C)\nCaps: 10uF In, 22uF Out" (at 90 55 0) (effects (font (size 2.0 2.0))))
+  (text "[BANK FILTERING]\n6x 1000uF 16V Low-ESR\nDecoupling on each\nservo power bank" (at 150 55 0) (effects (font (size 2.0 2.0))))
+
+  (text "SECTION 2: CENTRAL CONTROLLER (ESP32-S3-WROOM-1)\nDual-Core 240MHz Xtensa LX7 - 16MB Flash - 8MB Octal PSRAM\nUSB-C Native CDC Telemetry - Hardware I2C0 and I2C1 - Hardware I2S Audio" (at 25 110 0) (effects (font (size 2.5 2.5) bold)))
+  (text "GPIO 8:  I2C0_SDA (PCA9685 Bus)\nGPIO 9:  I2C0_SCL (PCA9685 Bus)\nGPIO 17: I2C1_SDA (INA219 Telemetry)\nGPIO 18: I2C1_SCL (INA219 Telemetry)\nGPIO 19: USB_D-\nGPIO 20: USB_D+" (at 30 135 0) (effects (font (size 2.0 2.0))))
+  (text "GPIO 4: I2S_BCLK (Audio Clock)\nGPIO 5: I2S_LRC  (Word Select)\nGPIO 6: I2S_DIN  (INMP441 Mic In)\nGPIO 7: I2S_DOUT (MAX98357A Amp Out)\nGPIO 48: WS2812B Eye LED Ring\nEN / BOOT: Auto-reset circuit" (at 110 135 0) (effects (font (size 2.0 2.0))))
+
+  (text "SECTION 3: 4x PCA9685 16-CH PWM ACTUATOR DRIVERS (51 AXES TOTAL)\nI2C Bus 0 (Wire) at 400kHz - Output Frequency: 50Hz Standard Servo PWM" (at 210 35 0) (effects (font (size 2.5 2.5) bold)))
+  (text "[PCA9685 #1 at 0x40]\nCh 00-07: Limbs 1-4 Base (MG996R)\nCh 08-15: Limbs 1-4 Tip (MG90S)\nPower: Bank 1 (+6V_B1)" (at 215 55 0) (effects (font (size 1.8 1.8))))
+  (text "[PCA9685 #2 at 0x41]\nCh 16-23: Limbs 5-8 Base (MG996R)\nCh 24-31: Limbs 5-8 Tip (MG90S)\nPower: Bank 2 (+6V_B2)" (at 265 55 0) (effects (font (size 1.8 1.8))))
+  (text "[PCA9685 #3 at 0x42]\nCh 32-39: Limbs 9-12 Base (MG996R)\nCh 40-47: Limbs 9-12 Tip (MG90S)\nPower: Bank 3 (+6V_B3)" (at 315 55 0) (effects (font (size 1.8 1.8))))
+  (text "[PCA9685 #4 at 0x43]\nCh 48-55: Limbs 13-16 / 17-24 Exp\nCh 56-58: 3-Axis Eye (ES08MD II)\nPower: Bank 4 and Eye (+6V_B4)" (at 360 55 0) (effects (font (size 1.8 1.8))))
+
+  (text "SECTION 4: 6x INA219 CURRENT TELEMETRY (VIRTUAL TOUCH SENSING)\nI2C Bus 1 (Wire1) at 400kHz - 0.01 Ohm 2W 2512 Shunts - 16A Full Scale" (at 210 110 0) (effects (font (size 2.5 2.5) bold)))
+  (text "INA219 #1 (0x40): Bank 1 Monitor (Limbs 1-4)\nINA219 #2 (0x41): Bank 2 Monitor (Limbs 5-8)\nINA219 #3 (0x44): Bank 3 Monitor (Limbs 9-12)\nINA219 #4 (0x45): Bank 4 Monitor (Limbs 13-16)\nINA219 #5 (0x46): Bank 5 Monitor (Limbs 17-20)\nINA219 #6 (0x47): Bank 6 Monitor (Limbs 21-24 + Eye Gimbal)" (at 215 135 0) (effects (font (size 2.0 2.0))))
+  (text "Detection Logic: When any limb strikes an obstacle or touches the ground,\nthe stall current spike (>2.8A) triggers an automatic interrupt on ESP32-S3,\nproviding sensorless proprioception without tactile bumper switches." (at 215 170 0) (effects (font (size 1.8 1.8) italic)))
+
+  (text "SECTION 5: I2S AUDIO HARNESS AND 3-AXIS CAMERA EYE" (at 25 210 0) (effects (font (size 2.5 2.5) bold)))
+  (text "[AUDIO INPUT]\nINMP441 Omnidirectional I2S Mic\nSCK -> GPIO 4, WS -> GPIO 5, SD -> GPIO 6\nUsed for Wake-Word and Voice Recognition" (at 25 225 0) (effects (font (size 1.8 1.8))))
+  (text "[AUDIO OUTPUT]\nMAX98357A 3.2W Class-D Amp + 4-Ohm Cavity Speaker\nBCLK -> GPIO 4, LRC -> GPIO 5, DIN -> GPIO 7\nUsed for Organic Chirps and Voice Playback" (at 25 250 0) (effects (font (size 1.8 1.8))))
+
+  (text "SECTION 6: SERVO BUS HEADERS (51 CHANNELS)" (at 210 210 0) (effects (font (size 2.5 2.5) bold)))
+  (text "Bank 1 (J1): Ch 00-07 (8x 3-Pin Headers) -> Limbs 1-4\nBank 2 (J2): Ch 08-15 (8x 3-Pin Headers) -> Limbs 5-8\nBank 3 (J3): Ch 16-23 (8x 3-Pin Headers) -> Limbs 9-12\nBank 4 (J4): Ch 24-31 (8x 3-Pin Headers) -> Limbs 13-16\nBank 5 (J5): Ch 32-39 (8x 3-Pin Headers) -> Limbs 17-20\nBank 6 (J6): Ch 40-47 (8x 3-Pin Headers) -> Limbs 21-24\nEye Bank (J7): Ch 48-50 (3x 3-Pin Headers) -> Pan / Tilt / Roll" (at 215 228 0) (effects (font (size 1.8 1.8))))
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)
