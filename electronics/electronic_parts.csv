@@ -1,0 +1,100 @@
+Reference,Value,Footprint,Manufacturer part
+U1,ESP32-S3-WROOM-1-N8,ANIMA_Footprints:ESP32-S3-WROOM-1_Edge,ESP32-S3-WROOM-1-N8
+R1,10k,Resistor_SMD:R_0603_1608Metric,
+C1,1uF,Capacitor_SMD:C_0603_1608Metric,
+R2,10k,Resistor_SMD:R_0603_1608Metric,
+C2,100nF,Capacitor_SMD:C_0603_1608Metric,
+C3,22uF,Capacitor_SMD:C_1206_3216Metric,
+J2,PI UART,Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,
+J3,PROGRAM UART,Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,
+J1,5V LOGIC IN,TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-3-2-5.08_1x02_P5.08mm_Horizontal,
+U2,AP63203WU-7,Package_TO_SOT_SMD:TSOT-23-6,AP63203WU-7
+L1,4.7uH SRP5030TA-4R7M,Inductor_SMD:L_Bourns_SRP5030T,
+C4,100nF,Capacitor_SMD:C_0603_1608Metric,
+C5,10uF 16V,Capacitor_SMD:C_1206_3216Metric,
+C6,22uF 10V,Capacitor_SMD:C_1206_3216Metric,
+C7,22uF 10V,Capacitor_SMD:C_1206_3216Metric,
+J5,STOP AUX CONTACT,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+U3,SN74LVC1G00DBVR,Package_TO_SOT_SMD:SOT-23-5,SN74LVC1G00DBVR
+R3,10k,Resistor_SMD:R_0603_1608Metric,
+R4,100k,Resistor_SMD:R_0603_1608Metric,
+C8,100nF,Capacitor_SMD:C_0603_1608Metric,
+J6,HALL HARNESS,Connector_JST:JST_XH_B9B-XH-A_1x09_P2.50mm_Vertical,
+R10,10k,Resistor_SMD:R_0603_1608Metric,
+R11,10k,Resistor_SMD:R_0603_1608Metric,
+R12,10k,Resistor_SMD:R_0603_1608Metric,
+R13,10k,Resistor_SMD:R_0603_1608Metric,
+R14,10k,Resistor_SMD:R_0603_1608Metric,
+R15,10k,Resistor_SMD:R_0603_1608Metric,
+R16,10k,Resistor_SMD:R_0603_1608Metric,
+J7,COIL 1 NTC,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R17,10k 1%,Resistor_SMD:R_0603_1608Metric,
+C10,100nF,Capacitor_SMD:C_0603_1608Metric,
+J8,COIL 2 NTC,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R18,10k 1%,Resistor_SMD:R_0603_1608Metric,
+C11,100nF,Capacitor_SMD:C_0603_1608Metric,
+J9,COIL 3 NTC,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R19,10k 1%,Resistor_SMD:R_0603_1608Metric,
+C12,100nF,Capacitor_SMD:C_0603_1608Metric,
+J10,MODE START REMATCH,Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,
+R20,10k,Resistor_SMD:R_0603_1608Metric,
+R21,10k,Resistor_SMD:R_0603_1608Metric,
+R22,10k,Resistor_SMD:R_0603_1608Metric,
+J11,LD2410 RADAR,Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,
+C13,10uF,Capacitor_SMD:C_0805_2012Metric,
+U4,SN74AHCT244PWR,Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm,SN74AHCT244PWR
+C14,100nF,Capacitor_SMD:C_0603_1608Metric,
+J12,PAN_SERVO,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R23,100k,Resistor_SMD:R_0603_1608Metric,
+J13,TILT_SERVO,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R24,100k,Resistor_SMD:R_0603_1608Metric,
+J14,ELBOW_SERVO,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R25,100k,Resistor_SMD:R_0603_1608Metric,
+J15,JAW_SERVO,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R26,100k,Resistor_SMD:R_0603_1608Metric,
+J16,SHUTTER_SERVO,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+R27,100k,Resistor_SMD:R_0603_1608Metric,
+U5,SN74AHCT1G125DBVR,Package_TO_SOT_SMD:SOT-23-5,SN74AHCT1G125DBVR
+R28,330R,Resistor_SMD:R_0603_1608Metric,
+C15,100nF,Capacitor_SMD:C_0603_1608Metric,
+R29,100k,Resistor_SMD:R_0603_1608Metric,
+J17,PIXELS SIGNAL,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+U6,MAX98357AETE+T,Package_DFN_QFN:TQFN-16-1EP_3x3mm_P0.5mm_EP1.23x1.23mm,MAX98357AETE+T
+R30,0R,Resistor_SMD:R_0603_1608Metric,
+C16,100nF,Capacitor_SMD:C_0603_1608Metric,
+C17,10uF,Capacitor_SMD:C_0805_2012Metric,
+J18,SPEAKER BTL,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,
+J19,12V COIL CUT INPUT,TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-3-2-5.08_1x02_P5.08mm_Horizontal,
+C18,470uF 25V,Capacitor_THT:CP_Radial_D8.0mm_P3.50mm,
+C19,100nF 50V,Capacitor_SMD:C_0805_2012Metric,
+U7,UCC27517ADBVR,Package_TO_SOT_SMD:SOT-23-5,UCC27517ADBVR
+C20,1uF,Capacitor_SMD:C_0805_2012Metric,
+R31,100k,Resistor_SMD:R_0603_1608Metric,
+R34,22R,Resistor_SMD:R_0603_1608Metric,
+R37,10k,Resistor_SMD:R_0603_1608Metric,
+Q1,IRLZ44NPBF,Package_TO_SOT_THT:TO-220-3_Vertical,IRLZ44NPBF
+D1,SS54-E3/57T,Diode_SMD:D_SMC,SS54-E3/57T
+D4,SMBJ24A-E3/52,Diode_SMD:D_SMB,SMBJ24A-E3/52
+J20,COIL 1,TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-3-2-5.08_1x02_P5.08mm_Horizontal,
+U8,UCC27517ADBVR,Package_TO_SOT_SMD:SOT-23-5,UCC27517ADBVR
+C21,1uF,Capacitor_SMD:C_0805_2012Metric,
+R32,100k,Resistor_SMD:R_0603_1608Metric,
+R35,22R,Resistor_SMD:R_0603_1608Metric,
+R38,10k,Resistor_SMD:R_0603_1608Metric,
+Q2,IRLZ44NPBF,Package_TO_SOT_THT:TO-220-3_Vertical,IRLZ44NPBF
+D2,SS54-E3/57T,Diode_SMD:D_SMC,SS54-E3/57T
+D5,SMBJ24A-E3/52,Diode_SMD:D_SMB,SMBJ24A-E3/52
+J21,COIL 2,TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-3-2-5.08_1x02_P5.08mm_Horizontal,
+U9,UCC27517ADBVR,Package_TO_SOT_SMD:SOT-23-5,UCC27517ADBVR
+C22,1uF,Capacitor_SMD:C_0805_2012Metric,
+R33,100k,Resistor_SMD:R_0603_1608Metric,
+R36,22R,Resistor_SMD:R_0603_1608Metric,
+R39,10k,Resistor_SMD:R_0603_1608Metric,
+Q3,IRLZ44NPBF,Package_TO_SOT_THT:TO-220-3_Vertical,IRLZ44NPBF
+D3,SS54-E3/57T,Diode_SMD:D_SMC,SS54-E3/57T
+D6,SMBJ24A-E3/52,Diode_SMD:D_SMB,SMBJ24A-E3/52
+J22,COIL 3,TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-3-2-5.08_1x02_P5.08mm_Horizontal,
+H1,M3 Mount,MountingHole:MountingHole_3.2mm_M3,
+H2,M3 Mount,MountingHole:MountingHole_3.2mm_M3,
+H3,M3 Mount,MountingHole:MountingHole_3.2mm_M3,
+H4,M3 Mount,MountingHole:MountingHole_3.2mm_M3,

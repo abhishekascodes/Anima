@@ -1,0 +1,1 @@
+(fp_lib_table (version 7) (lib (name "ANIMA_Footprints") (type "KiCad") (uri "${KIPRJMOD}/ANIMA_Footprints.pretty") (options "") (descr "ANIMA antenna overhang")))
