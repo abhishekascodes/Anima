@@ -1,153 +1,94 @@
-# ANIMA: 51-Axis Bio-Robotic Organism
+# ANIMA: Tabletop Rock-Paper-Scissors Robot
 
-ANIMA is an experimental, modular bio-robotic organism created to explore fluid, multi-limb adaptive movement and interactive visual tracking. 
+An interactive, tabletop humanoid upper torso robot built for **Hack Club Fallen** and showcasing at **Maker Faire Shenzhen 2026**.
 
-Built for **Hack Club Fallen** and showcasing at **Maker Faire Shenzhen 2026**.
+Designed and built by Abhishek A S.
+
+---
+
+## What is ANIMA?
+
+Honestly, I spent the first 6 hours of this build trying to make an insane 51-axis radial bio-organism. But once I rendered the 3D model, it looked like a rigid, awkward spider ball. Worse, the mechanical load math showed that standard servo splines would shear off under radial cantilever weight, and trying to route 60 amps of power across 24 moving limbs was asking for a fire.
+
+So I scrapped it and pivoted hard: **ANIMA is now a high-speed, interactive tabletop Rock-Paper-Scissors (RPS) torso.**
+
+Instead of just wiggling motors on a stand, ANIMA actually plays against visitors at the booth in real time. It uses a combination of high-torque servos for expressive head/arm motion, electromagnetic tendon coils for finger throws, and a cryptographic anti-cheat commitment protocol so visitors know the robot isn't reading their hand late.
 
 ---
 
 ## Project Showcase
 
-| Full 3D Kinematic Assembly (24 Limbs + 3-Axis Eye Gimbal) |
-| :---: |
-| ![ANIMA Full 3D Assembly](docs/images/full_3d_assembly.png) |
-
-| 3D Mainboard PCB Render | Schematic Architecture |
+| Tabletop Torso Assembly (420 x 380 x 550 mm) | Internal Cutaway & Tendon Routing |
 | :---: | :---: |
-| ![ANIMA PCB 3D Render](docs/images/pcb_3d_render.png) | ![ANIMA Schematic Architecture](docs/images/schematic_diagram.png) |
+| ![ANIMA Torso Assembly](docs/images/ANIMA%20RPS%20Assembly.png) | ![ANIMA Cutaway](docs/images/ANIMA%20RPS%20Electronics%20Cutaway.png) |
+
+| Custom 4-Layer Controller (KiCad 10) | Multi-Sheet Schematic |
+| :---: | :---: |
+| ![ANIMA Controller PCB](docs/images/ANIMA%20RPS%20PCB.png) | ![ANIMA Schematic](docs/images/ANIMA%20RPS%20Schematic.png) |
 
 ---
 
-## Why ANIMA?
+## How It Works
 
-Traditional multi-legged robots prioritize walking and balance, which forces them to carry heavy batteries, rigid linkages, and bulky gearboxes that compromise organic expressiveness. 
+### 1. Hybrid Actuation
+- **5 Servos:** Neck pan, neck tilt, elbow pitch, jaw articulation (syncing to audio lines), and an internal high-speed camera shutter. All servo shafts are supported by 688ZZ radial bearings so the horns never take direct side loads.
+- **3 Electromagnetic Tendon Coils:** High-speed solenoids pulling braided Kevlar lines for the hand gestures:
+  - Channel 1: Index + Middle fingers
+  - Channel 2: Ring + Little fingers
+  - Channel 3: Thumb
+- **7 Hall Effect Sensors:** DRV5033 digital Hall sensors placed at stroke limits (extension and retraction) to physically confirm finger posture in under 15 milliseconds.
 
-ANIMA takes a different approach:
-- The central hub is rigidly supported on a stand, decoupling the limbs from carrying structural body weight.
-- 24 identical, interchangeable 2-joint limbs (48 axes) can move freely in coordinated, bio-mimetic wave patterns without risk of catastrophic ground collapse.
-- A 3-axis mechanical gimbal eye houses a 5MP camera that tracks people in the room, triggering responsive physical postures across the body.
-- Gaits and behavioral reflexes are simulated in PyBullet on an RTX 5080 laptop and transferred in real-time to the hardware via native USB CDC serial.
-
----
-
-## System Architecture
-
-```
-                                  +-----------------------+
-                                  |   Host PC (PyBullet)  |
-                                  | CV Tracking & Gaits   |
-                                  +-----------+-----------+
-                                              | USB-C Serial (115200)
-                                              v
-                                  +-----------------------+
-                                  |    ESP32-S3 Master    |
-                                  | 240MHz Dual-Core MCU  |
-                                  +-----+-----------+-----+
-                                        |           |
-              +-------------------------+           +--------------------------+
-              | I2C Bus 0 (Wire) @ 400kHz           | I2C Bus 1 (Wire1) @ 400kHz
-              v                                     v
-    +-------------------+                 +-------------------+
-    | 4x PCA9685 Drivers|                 | 6x INA219 Sensors |
-    | 64 Total PWM Chs  |                 | Current Telemetry |
-    +---------+---------+                 +---------+---------+
-              |                                     |
-              v                                     v
-    +-------------------+                 +-------------------+
-    | 51 Servos         |                 | 6 Power Banks     |
-    | 24x MG996R (Base) |                 | Real-time stall   |
-    | 24x MG90S  (Tip)  |                 | detection & touch |
-    | 3x  ES08MD (Eye)  |                 | feedback          |
-    +-------------------+                 +-------------------+
-```
+### 2. The FAIR Anti-Cheat Protocol
+In most RPS robots, the machine cheats by using a high-speed camera to classify your gesture at 60 fps and throwing its move a fraction of a second later. ANIMA physically proves it plays fair:
+1. **Pre-Commitment:** Before countdown beat 1, the host computer generates a random move and a 24-byte secret key, computes a SHA-256 hash, and displays the hash full-screen on an external HDMI monitor.
+2. **Physical Blackout:** An opaque mechanical shutter blade physically covers the camera sensor during the entire countdown.
+3. **Mechanical Verification:** On the throw cue, the tendon coils fire. The 6 finger Hall sensors verify that the hand actually reached the committed physical pose.
+4. **Reveal & Proof:** Once the Hall sensors confirm the mechanical throw, the shutter snaps open, the secret key is published on the screen, and spectators can verify the SHA-256 hash matches the pre-countdown commitment.
 
 ---
 
-## Technical Specifications
+## Custom Electronics (KiCad 10)
 
-### 1. Kinematics & Mechanics
-- **Limb Segments (x24 identical)**:
-  - Upper link: 120 mm centre-to-centre, 24 mm wide, 3 mm thickness.
-  - Lower link: 100 mm centre-to-centre, 24 mm wide, 3 mm thickness.
-  - Total extended reach: 220 mm per limb.
-  - 6 mm integrated cable raceways along each link.
-- **Actuators**:
-  - Base joint: TowerPro MG996R metal-gear servo (11 kg-cm stall @ 6V).
-  - Tip/elbow joint: TowerPro MG90S metal-gear micro servo (2.2 kg-cm stall @ 6V).
-  - Base radial protection: 24x 688ZZ miniature ball bearings to prevent servo spline shearing under dynamic motion.
-- **Eye Gimbal**:
-  - 3-axis pan/tilt/roll mechanism driven by 3x EMAX ES08MD II digital metal-gear servos.
-  - Camera: EMBEST CAM8200-U 5MP USB camera module with wide-angle lens.
-- **Structural Materials**:
-  - Precision laser-cut 3 mm acrylic and aluminum plates.
-  - M3 stainless socket head screws and nylon locknuts.
-
-### 2. Electronics & Power
-- **Central Microcontroller**: ESP32-S3-WROOM-1-N16R8 (16MB Flash, 8MB Octal PSRAM).
-- **PWM Actuator Bus**: 4x PCA9685PW TSSOP-28 drivers on I2C Bus 0 (addresses 0x40, 0x41, 0x42, 0x43) generating 50 Hz PWM across 51 channels.
-- **Proprioceptive Current Sensing**: 6x INA219AIDR sensors on I2C Bus 1 (addresses 0x40, 0x41, 0x44, 0x45, 0x46, 0x47) with 0.01-ohm 2W 2512 shunts, monitoring power per 4-limb bank to detect obstacles and ground contact without physical bumper switches.
-- **Acoustic Subsystem**: INMP441 I2S digital microphone for local wake-word capture; MAX98357A I2S 3.2W Class-D amplifier with 4-ohm cavity speaker for organic bio-acoustic vocalizations.
-- **Mains Power Supply**: Industrial 6V 35A SMPS (210W) with star grounding, high-current XT60 disconnects, and 6x 5A mini blade fuses.
+The entire robot runs on a custom 4-layer PCB (`ANIMA_RPS_Controller`):
+- **MCU:** ESP32-S3-WROOM-1-N8 running low-jitter LEDC hardware timers for PWM and GPIO interrupts for the Hall stops.
+- **Power Architecture:** Dual-rail design with strict power isolation:
+  - 5V logic input stepped down to 3.3V 2A via an onboard AP63203 synchronous buck converter.
+  - Fused 12V / 10A rail for the inductive finger coils, isolated with UCC27517 high-speed gate drivers, IRLZ44N power MOSFETs, SS54 Schottky clamp diodes, and SMBJ24A transient suppressors.
+- **Hardware E-Stop:** An SN74LVC1G00 hardware logic gate wired directly to an external maintained emergency stop button. If the E-stop is hit or software crashes, coil and servo PWM are disabled in hardware.
+- **Audio & Presence:** Onboard MAX98357A I2S Class-D amplifier driving a booth speaker, plus an LD2410 24 GHz mmWave radar header for visitor tracking.
 
 ---
 
 ## Repository Structure
 
-```text
+```
 ├── cad/
-│   ├── anima_organism.scad    # Parametric OpenSCAD full organism & limb model
-│   └── exports/               # STEP files for every modeled link, bracket, and chassis plate
-│       ├── ANIMA_Upper_Link_120mm.step
-│       ├── ANIMA_Lower_Link_100mm.step
-│       ├── ANIMA_MG996R_Base_Bracket.step
-│       ├── ANIMA_MG90S_Elbow_Bracket.step
-│       ├── ANIMA_Hub_Radial_Plate.step
-│       ├── ANIMA_3Axis_Eye_Gimbal.step
-│       └── ANIMA_Stand_Mount_Flange.step
+│   ├── ANIMA_RPS_Upper_Torso.FCStd   # Native FreeCAD master assembly
+│   ├── ANIMA_RPS_Upper_Torso.step    # Full CAD assembly STEP
+│   ├── anima_rps_assembly.py         # Parametric CadQuery assembly script
+│   └── Parts/                        # 41 individual modeled leaf part STEP files
 ├── electronics/
-│   ├── kicad/                 # KiCad 8 project, schematic, and 4-layer PCB layout
-│   │   ├── ANIMA_Mainboard.kicad_pro
-│   │   ├── ANIMA_Mainboard.kicad_sch
-│   │   ├── ANIMA_Mainboard.kicad_pcb
-│   │   └── ANIMA_Mainboard.kicad_prl
-│   └── gerbers/
-│       └── gerbers.zip        # Production gerber & drill files for SMT fabrication
+│   ├── ANIMA_RPS_Controller.kicad_sch # 8-block KiCad schematic (0 ERC errors)
+│   ├── ANIMA_RPS_Controller.kicad_pcb # 4-layer routed board (0 DRC errors)
+│   ├── gerbers.zip                   # Complete 13-file manufacturing fab package
+│   └── PCB_BOM.csv                   # 47 fitted board components
 ├── firmware/
-│   ├── include/config.h       # Pin assignments, I2C addresses, and safety parameters
-│   ├── src/main.cpp           # ESP32-S3 control loop, soft-start, watchdog & telemetry
-│   └── platformio.ini         # PlatformIO build configuration
-├── bom.csv                    # Complete Bill of Materials with supplier links and USD pricing
+│   ├── esp32/                        # PlatformIO C++ firmware with hardware timers
+│   └── pi/                           # Python host scripts and FAIR protocol tools
+├── docs/
+│   ├── FAIR_PROTOCOL.md              # Anti-cheat proof specification
+│   ├── INTEGRATION.md                # System integration and harness guide
+│   └── images/                       # Renders and schematics
+├── bom.csv                           # Full 94-line exhibit BOM (₹58,120.68)
 └── README.md
 ```
 
 ---
 
-## CAD & Onshape Source
+## Verification & Status
 
-All 3D CAD modeling is developed parametrically in OpenSCAD and Onshape:
-- Parametric 3D Organism Script: [`cad/anima_organism.scad`](cad/anima_organism.scad)
-- Public Onshape Assembly URL: `https://cad.onshape.com/documents/anima-robotics`
-- All individual part STEP exports are available directly in [`cad/exports/`](cad/exports/).
-
----
-
-## Build & Test Procedure
-
-1. **Firmware Upload**:
-   Open the `firmware/` directory in VS Code with PlatformIO installed:
-   ```bash
-   pio run --target upload
-   ```
-2. **Servo Zeroing**:
-   Power the logic board via USB-C first without the 6V SMPS enabled. Verify all 4 PCA9685 chips report on I2C0. Issue `HOME` via serial to zero all channels to 90 degrees before attaching servo horns.
-3. **Power-Up Sequence**:
-   Connect the 6V 35A SMPS via XT60. The soft-start loop ramps servo positions gradually to prevent high-current inrush spikes.
-4. **Endurance Verification**:
-   A single final-form limb is verified through a 5,000-cycle continuous sweep before full 24-limb hub assembly.
-
----
-
-## Author
-
-- **Abhishek A S** (abhishekas.media)
-- Hack Club Fallen | Team Sami | Maker Faire Shenzhen 2026
+- **CAD Envelope:** Checked at 420 x 380 x 550 mm with 41 unique modeled parts.
+- **KiCad ERC:** 0 violations, 0 warnings.
+- **KiCad DRC:** 0 violations, 0 unconnected items.
+- **Firmware:** Compiled cleanly under PlatformIO for ESP32-S3.
+- **Gerbers:** 13 fabrication layers ready for JLCPCB / PCBWay manufacturing.

@@ -1,6 +1,12 @@
 # Private planning and administrative research
 planning/
 research/
+review_package/
+journal_screenshots/
+show/
+ANIMA_HANDOFF.md
+ANIMA_SOURCE_HANDOFF.zip
+
 # Local credentials and generated caches
 .env
 .env.*

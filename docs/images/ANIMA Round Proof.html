@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANIMA / Round proof</title>
+  <style>
+    :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#111b21;color:#f2ebdf}
+    *{box-sizing:border-box}body{margin:0}main{display:grid;grid-template-columns:minmax(300px,1fr) minmax(310px,1fr);max-width:1200px;min-height:100vh;margin:auto}
+    figure{margin:0;overflow:hidden;background:#1a2831}img{width:100%;height:100%;object-fit:cover;display:block}
+    article{align-self:center;padding:clamp(24px,5vw,74px)}h1{margin:.15em 0;font-size:clamp(48px,7vw,84px);letter-spacing:-.07em}
+    h2{font-size:24px;margin:0}p{max-width:42ch;color:#cbd2d4;line-height:1.6}small{font-weight:700;letter-spacing:.08em;color:#f6bd83}
+    button,textarea{font:inherit}button{border:1px solid #597787;border-radius:7px;padding:11px 14px;color:inherit;background:#21343e;cursor:pointer}
+    button:disabled{opacity:.45;cursor:default}button:not(:disabled):hover{background:#304e5b}.primary{background:#f1ae72;color:#1d2023;border-color:#f1ae72;font-weight:700}.primary:not(:disabled):hover{background:#ffd19e}
+    button:focus-visible,textarea:focus-visible{outline:2px solid #f1ae72;outline-offset:4px}.moves{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
+    label,output{display:block}label{margin:18px 0 6px;font-weight:700}.hash{overflow-wrap:anywhere;font:.91rem ui-monospace,monospace;padding:9px 0;color:#ffd19e;min-height:30px}
+    textarea{display:block;resize:vertical;width:100%;min-height:104px;background:#142129;color:#fff;border:1px solid #597787;border-radius:7px;padding:8px;margin-bottom:8px;font:.86rem ui-monospace,monospace}
+    #result{display:block;min-height:42px;font-weight:700;padding-block:8px}#verification{margin-top:8px}
+    @media(max-width:680px){main{display:block}figure{height:32vh}img{object-position:center 30%}}
+  </style>
+</head>
+<body>
+  <main>
+    <figure><img src="ANIMA RPS Assembly.png" alt="ANIMA torso with guarded tendon hand and a physical camera shutter" /></figure>
+    <article>
+      <small>FAIR MODE · DIGITAL REHEARSAL</small>
+      <h1>ANIMA</h1>
+      <h2>Check the throw</h2>
+      <p>Lock ANIMA’s move, then choose yours. The proof reveals the move and secret used to produce the original hash.</p>
+      <button class="primary" id="lock" type="button">Lock a move</button>
+      <label for="commitment">Published commitment</label>
+      <output class="hash" id="commitment"> - </output>
+      <div class="moves" aria-label="Your move">
+        <button type="button" data-move="ROCK" disabled>Rock</button>
+        <button type="button" data-move="PAPER" disabled>Paper</button>
+        <button type="button" data-move="SCISSORS" disabled>Scissors</button>
+      </div>
+      <output id="result" aria-live="polite"></output>
+      <label for="proof">Round proof JSON</label>
+      <textarea id="proof" spellcheck="false" placeholder="The reveal appears here. You can also paste a proof."></textarea>
+      <button type="button" id="verify">Verify proof</button>
+      <output role="status" id="verification"></output>
+    </article>
+  </main>
+  <script>
+    const moves = ['ROCK', 'PAPER', 'SCISSORS'];
+    const winsAgainst = { ROCK: 'SCISSORS', PAPER: 'ROCK', SCISSORS: 'PAPER' };
+    const element = (id) => document.getElementById(id);
+    const throwButtons = [...document.querySelectorAll('[data-move]')];
+    const hex = (bytes) => [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    const randomBytes = (count) => crypto.getRandomValues(new Uint8Array(count));
+    let current;
+
+    async function digest(round, move, nonce) {
+      const message = new TextEncoder().encode(`ANIMA-RPS-v1\n${round}\n${move}\n${nonce}\n`);
+      return hex(new Uint8Array(await crypto.subtle.digest('SHA-256', message)));
+    }
+
+    async function valid(proof, published) {
+      if (typeof proof !== 'object' || !proof || !/^[a-f0-9]{32}$/.test(proof.round)
+          || !moves.includes(proof.throw) || !/^[a-f0-9]{48}$/.test(proof.nonce)) return false;
+      const calculated = await digest(proof.round, proof.throw, proof.nonce);
+      return proof.commitment === calculated && (!published || published === calculated);
+    }
+
+    element('lock').addEventListener('click', async () => {
+      element('lock').disabled = true;
+      throwButtons.forEach((button) => button.disabled = true);
+      current = undefined;
+      element('commitment').textContent = ' - ';
+      element('proof').value = '';
+      element('verification').textContent = '';
+      try {
+        let sample = randomBytes(1)[0];
+        while (sample === 255) sample = randomBytes(1)[0];
+        const round = hex(randomBytes(16));
+        const move = moves[sample % moves.length];
+        const nonce = hex(randomBytes(24));
+        const commitment = await digest(round, move, nonce);
+        current = { round, throw: move, nonce, commitment };
+        element('commitment').textContent = commitment;
+        element('result').textContent = 'Locked. Choose your throw.';
+        throwButtons.forEach((button) => button.disabled = false);
+      } catch {
+        element('result').textContent = 'Open this page in a browser with Web Crypto enabled.';
+        element('lock').disabled = false;
+      }
+    });
+
+    throwButtons.forEach((button) => button.addEventListener('click', () => {
+      if (!current) return;
+      const player = button.dataset.move;
+      const anima = current.throw;
+      const verdict = player === anima ? 'Draw.' : winsAgainst[player] === anima ? 'You win.' : 'ANIMA wins.';
+      element('result').textContent = `You: ${player}. ANIMA: ${anima}. ${verdict}`;
+      element('proof').value = JSON.stringify(current, null, 2);
+      element('lock').disabled = false;
+      throwButtons.forEach((item) => item.disabled = true);
+    }));
+
+    element('verify').addEventListener('click', async () => {
+      try {
+        const proof = JSON.parse(element('proof').value);
+        const published = element('commitment').textContent;
+        const matched = await valid(proof, published === ' - ' ? '' : published);
+        element('verification').textContent = matched
+          ? (published === ' - ' ? 'The reveal matches its included hash. Compare it with the original published hash.' : 'The reveal matches the original published hash.')
+          : 'The reveal and commitment do not match.';
+      } catch {
+        element('verification').textContent = 'Paste valid proof JSON and verify again.';
+      }
+    });
+  </script>
+</body>
+</html>

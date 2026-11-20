@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANIMA Bench Rehearsal</title>
+<style>
+:root{color-scheme:dark;--page:#14171a;--panel:#20252a;--line:#3c4348;--text:#f2eee5;--muted:#c0bbb0;--amber:#ffbc66;--teal:#84dfcf;--danger:#ff9a9e}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--text);font:16px/1.55 system-ui,sans-serif}main{width:min(1100px,100% - 40px);margin:36px auto 50px}header{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}h1,h2,p{margin:0}h1{font:700 clamp(44px,9vw,90px)/.87 'Arial Narrow',sans-serif;letter-spacing:.03em;color:var(--text)}header p{max-width:38ch;color:var(--muted);font-size:.9rem}h2{font-size:1.05rem;letter-spacing:.01em}.layout{display:grid;grid-template-columns:1fr .84fr;gap:18px}.card{border:1px solid var(--line);background:var(--panel);border-radius:14px;overflow:hidden}.stage{background:radial-gradient(ellipse at 50% 45%,#373331,#1a2024 68%);min-height:385px;display:grid;grid-template-rows:auto 1fr auto;padding:20px}.stage-top,.stage-end{display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:.82rem;color:var(--muted)}.stage-end strong{color:var(--text)}.lamp{display:inline-flex;align-items:center;gap:8px}.lamp::before{content:'';background:var(--amber);width:.6em;height:.6em;border-radius:50%}.stage[data-shutter='closed'] .lamp::before{background:var(--teal)}.robot{width:min(94%,345px);height:252px;position:relative;margin:12px auto 4px;isolation:isolate}.robot span{position:absolute;display:block}.foot{bottom:0;inset-inline:3%;height:24px;border-radius:10px 10px 4px 4px;background:linear-gradient(#515353,#282d30);border-top:2px solid #8d887d}.body{width:46%;height:135px;left:27%;bottom:22px;background:linear-gradient(105deg,#2a2b2d,#45494a 56%,#343434);clip-path:polygon(2% 8%,22% 0,78% 0,98% 8%,84% 100%,16% 100%);border-top:2px solid #949188}.head{width:41%;height:95px;left:29.5%;top:0;border-radius:40% 40% 25% 25%;background:linear-gradient(144deg,#fbecd3,#a38d73 70%,#685d4f);box-shadow:0 6px 16px #0a1315;transform:rotate(-6deg);transition:transform .24s}.stage[data-phase='COUNTDOWN'] .head,.stage[data-phase='READY'] .head{transform:rotate(2deg)}.head .visor{inset:26% 6% 28%;background:#151a1d;clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-top:2px solid #51595c}.eye{width:17%;height:4px;top:44%;background:#ffb061;border-radius:3px;box-shadow:0 0 12px #ffa64b}.eye.left{left:23%}.eye.right{right:23%}.stage[data-mode='FAIR'] .eye{background:var(--teal);box-shadow:0 0 12px #67d0b6}.jaw{left:34%;right:34%;height:10%;bottom:11%;border-radius:2px 2px 5px 5px;background:#383735}.shoulder{top:105px;width:25%;height:48px;background:linear-gradient(160deg,#f5e5c9,#8f7c68);border-top:2px solid #e0cbb0;border-radius:12px;z-index:-1}.shoulder.a{left:11%;transform:rotate(11deg)}.shoulder.b{right:11%;transform:rotate(-11deg)}.arm{width:24%;height:79px;top:143px;border-radius:12px;background:linear-gradient(90deg,#464c4b,#89877e,#363c3c);z-index:-1}.arm.a{left:7%;transform:rotate(14deg)}.arm.b{right:7%;transform:rotate(-14deg);transform-origin:top left;transition:transform .2s}.chest{top:121px;left:36%;width:28%;height:40px;display:grid!important;place-items:center;background:#131617;color:var(--amber);border:1px solid #5b564e;border-radius:5px;font:700 22px/1 monospace;letter-spacing:.09em}.stage[data-mode='FAIR'] .chest{color:var(--teal)}.viewfinder{top:102px;right:6%;width:27px;height:22px;background:#151b1e;border:2px solid #778085;border-radius:5px;z-index:2}.viewfinder::after{content:'';position:absolute;width:8px;height:8px;top:5px;left:7px;background:var(--teal);border-radius:50%}.stage[data-shutter='closed'] .viewfinder::after{border-radius:1px;width:21px;height:16px;top:1px;left:1px;background:#8a633b}.signal{min-height:44px;font-size:1.35rem;font-weight:700;color:var(--amber)}.score{font-variant-numeric:tabular-nums}.controls{padding:20px}.control-block{margin-bottom:15px}.control-block p,label{font-size:.88rem;color:var(--muted)}fieldset{padding:0;border:0;margin:0 0 15px}legend{font-size:.88rem;color:var(--muted);padding:0;margin-bottom:6px}.row{display:flex;flex-wrap:wrap;gap:8px}button,select{font:inherit;border-radius:8px;background:#292f33;border:1px solid #565e61;color:var(--text);padding:8px 12px;min-height:42px}button:hover:not(:disabled){background:#3a4246}button:focus-visible,select:focus-visible{outline:2px solid var(--teal);outline-offset:2px}button[aria-pressed='true']{color:#171b1c;background:var(--teal);border-color:var(--teal);font-weight:700}button:disabled{opacity:.42}button.start{background:var(--amber);color:#241804;font-weight:750;border-color:var(--amber)}button.stop{color:var(--danger);border-color:#9e6265}.fault{display:grid;gap:5px}select{width:100%}.trace{margin-top:18px;padding:19px 20px}.trace h2{margin-bottom:8px}.trace ol{padding:0;margin:0;list-style:none;min-height:55px;max-height:250px;overflow:auto}.trace li{display:grid;grid-template-columns:6.3ch 1fr;gap:12px;padding:7px 0;border-top:1px solid var(--line);font-size:.88rem}.trace .ts{color:var(--teal);font-family:monospace}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:750px){header{align-items:start;flex-direction:column;gap:11px}.layout{grid-template-columns:1fr}.stage{min-height:350px}main{width:min(100% - 24px,1100px);margin-top:24px}}
+@media(prefers-reduced-motion:reduce){*,*::after,*::before{transition:none!important}}
+.proof-panel{margin-top:14px;padding:12px 14px;border-radius:9px}.proof-panel dl{margin:7px 0 0}.proof-panel dt{font-size:.86rem;color:var(--muted)}.proof-panel dd{margin:0 0 8px;color:var(--teal);font:.88rem/1.5 monospace;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main>
+  <header><h1>ANIMA</h1><p>Bench rehearsal for the upper-body exhibit. Uses simulated sensors and motion.</p></header>
+  <div class="layout">
+    <section id="stage" class="card stage" data-mode="CHEAT" data-shutter="open" data-phase="ATTRACT" aria-label="Exhibit status">
+      <div class="stage-top"><strong id="phase">ATTRACT</strong><span id="shutter" class="lamp">Camera open</span></div>
+      <div class="robot" aria-hidden="true"><span class="foot"></span><span class="shoulder a"></span><span class="shoulder b"></span><span class="arm a"></span><span class="arm b"></span><span class="body"></span><span class="head"><span class="visor"></span><span class="eye left"></span><span class="eye right"></span><span class="jaw"></span></span><span class="viewfinder"></span><span class="chest" id="chest"> - </span></div>
+      <div><p class="signal" id="result" role="status">Step up to play</p><div class="stage-end"><span>Robot pose <strong id="pose">Rock</strong></span><span class="score">Visitors <b id="visitor-score">0</b> &nbsp; ANIMA <b id="anima-score">0</b></span></div><section class="card proof-panel" id="fair-proof" aria-labelledby="proof-title" hidden><h2 id="proof-title">FAIR round proof</h2><dl><dt>Round ID</dt><dd id="fair-round"></dd><dt>Published SHA-256</dt><dd id="fair-commitment"></dd></dl><dl id="fair-opening" hidden><dt>Revealed move</dt><dd id="fair-move"></dd><dt>Secret</dt><dd id="fair-secret"></dd></dl></section></div>
+    </section>
+    <section class="card controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading" class="control-block">Round controls</h2>
+      <fieldset id="mode-controls"><legend>Mode</legend><div class="row"><button type="button" data-mode="CHEAT" aria-pressed="true">CHEAT</button><button type="button" data-mode="FAIR" aria-pressed="false">FAIR</button></div></fieldset>
+      <fieldset id="throw-controls"><legend>Visitor throw</legend><div class="row"><button type="button" data-throw="Rock" aria-pressed="true">Rock</button><button type="button" data-throw="Paper" aria-pressed="false">Paper</button><button type="button" data-throw="Scissors" aria-pressed="false">Scissors</button></div></fieldset>
+      <fieldset class="fault" id="fault-controls"><legend>Inject a fault</legend><label for="fault" class="sr">Fault scenario</label><select id="fault"><option value="none">No fault</option><option value="unreadable">Unreadable gesture</option><option value="shutter">Shutter fails to close</option><option value="miss">One pose verification failure</option><option value="stuck">Repeated pose failure</option><option value="return">Finger fails to return</option><option value="timeout">Gesture window timed out</option><option value="link">Link loss at the throw</option><option value="heat">Coil over-temperature</option></select></fieldset>
+      <div class="row"><button type="button" id="start" class="start">Start round</button><button type="button" id="stop" class="stop">E-stop</button><button type="button" id="reset" disabled>Reset fault</button></div>
+    </section>
+  </div>
+  <section class="card trace" aria-labelledby="trace-heading"><h2 id="trace-heading">Event trace</h2><ol id="events" aria-label="Round event log"></ol></section>
+</main>
+<script>
+'use strict';
+const el = id => document.getElementById(id);
+const stage = el('stage'), events = el('events');
+const countdownArm = stage.querySelector('.arm.b');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const counter = {Rock:'Paper', Paper:'Scissors', Scissors:'Rock'};
+let mode = 'CHEAT', visitorThrow = 'Rock', latched = false, busy = false;
+let timer = null, started = performance.now(), visitorScore = 0, animaScore = 0;
+let armTap = null;
+let activeRound = null;
+
+function randomHex(length) {
+  return toHex(crypto.getRandomValues(new Uint8Array(length)));
+}
+
+function toHex(bytes) {
+  return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function commitment(round, move) {
+  const message = `ANIMA-RPS-v1\n${round.id}\n${move.toUpperCase()}\n${round.secret}\n`;
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
+  return toHex(new Uint8Array(digest));
+}
+
+function trace(message) {
+  const item = document.createElement('li'), timestamp = document.createElement('span');
+  timestamp.className = 'ts';
+  timestamp.textContent = ((performance.now() - started) / 1000).toFixed(2) + ' s';
+  const detail = document.createElement('span');
+  detail.textContent = message;
+  item.append(timestamp, detail);
+  events.append(item);
+  events.scrollTop = events.scrollHeight;
+}
+
+function state(phase, result, display = ' - ') {
+  stage.dataset.phase = phase;
+  el('phase').textContent = phase;
+  el('result').textContent = result;
+  el('chest').textContent = display;
+}
+
+function shutter(position) {
+  stage.dataset.shutter = position;
+  el('shutter').textContent = 'Camera ' + position;
+}
+
+function controls() {
+  for (const id of ['mode-controls', 'throw-controls', 'fault-controls', 'start']) {
+    el(id).disabled = busy || latched;
+  }
+  el('reset').disabled = !latched;
+}
+
+function schedule(callback, ms) {
+  clearTimeout(timer);
+  timer = setTimeout(() => {timer = null; callback();}, ms);
+}
+
+function end(message, latch = false) {
+  clearTimeout(timer);
+  timer = null;
+  activeRound = null;
+  armTap?.cancel();
+  busy = false;
+  latched = latch;
+  state(latch ? 'LOCKOUT' : 'ATTRACT', message, latch ? 'OFF' : ' - ');
+  el('pose').textContent = latch ? 'Power cut' : 'Rock';
+  trace(latch ? 'Actuator enable removed. Reset required.' : 'Round cancelled. Actuators released.');
+  controls();
+}
+
+function score(robot, visitor) {
+  const tie = robot === visitor;
+  const win = counter[visitor] === robot;
+  if (!tie && win) animaScore += 1;
+  if (!tie && !win) visitorScore += 1;
+  el('visitor-score').textContent = visitorScore;
+  el('anima-score').textContent = animaScore;
+  trace(`SCORE · Visitor ${visitor}. ANIMA ${robot}. Session score updated once.`);
+  state('SCORE', tie ? 'Draw' : win ? 'ANIMA wins' : 'Visitor wins', tie ? 'DRAW' : win ? 'BOT' : 'YOU');
+  schedule(() => {
+    el('pose').textContent = 'Rock';
+    trace('RELEASE · Simulated hold ended. All three channels returned to Rock.');
+    activeRound = null;
+    busy = false;
+    controls();
+  }, 500);
+}
+
+async function reveal(round, robot) {
+  if (round.mode === 'FAIR') {
+    const reproduced = await commitment(round, robot);
+    if (activeRound !== round) return;
+    if (reproduced !== round.hash) {
+      end('Pose does not match the published commitment', true);
+      return;
+    }
+    el('fair-move').textContent = robot.toUpperCase();
+    el('fair-secret').textContent = round.secret;
+    el('fair-opening').hidden = false;
+    shutter('open');
+    trace('REVEAL · Shutter opens after verified robot pose. Read held visitor gesture.');
+    if (round.fault === 'unreadable') {
+      end('Hold your hand in the throw zone and try again');
+      return;
+    }
+    if (round.fault === 'timeout') {
+      end('Gesture window timed out');
+      return;
+    }
+  } else {
+    trace('REVEAL · Replay would show both gestures and the physical pose marker.');
+  }
+  score(robot, round.visitor);
+}
+
+function throwRobot(round, robot, attempt = 1) {
+  state('VERIFY', `Verifying ${robot}`, '...');
+  trace(`THROW · Command ${robot}. Check all three extension/retraction pairs.`);
+  schedule(() => {
+    if (round.fault === 'stuck' || (['miss', 'return'].includes(round.fault) && attempt === 1)) {
+      trace(`FOUL · Pose did not verify on attempt ${attempt}.`);
+      if (attempt === 2) {
+        end('Repeated pose fault', true);
+      } else {
+        trace('RELEASE · Coils off. Verify all three curl stops before retry.');
+        el('pose').textContent = 'Releasing';
+        schedule(() => {
+          if (round.fault === 'return') {
+            end('Finger did not return to its curl stop', true);
+            return;
+          }
+          el('pose').textContent = 'Rock';
+          trace('VERIFY · All three curl stops accepted.');
+          throwRobot(round, robot, 2);
+        }, 280);
+      }
+      return;
+    }
+    el('pose').textContent = robot;
+    trace(`VERIFY · ${robot} Hall pattern accepted.`);
+    reveal(round, robot);
+  }, 260);
+}
+
+function throwBeat(round) {
+  if (round.fault === 'link' || round.fault === 'heat') {
+    end(round.fault === 'link' ? 'Pi link lost' : 'Coil temperature limit', true);
+    return;
+  }
+  if (round.fault === 'unreadable' && round.mode === 'CHEAT') {
+    end('Show a clear hand pose and try again');
+    return;
+  }
+  if (round.fault === 'timeout' && round.mode === 'CHEAT') {
+    end('Gesture window timed out');
+    return;
+  }
+  if (round.mode === 'CHEAT') trace(`VISION · Read visitor ${round.visitor} at the throw.`);
+  throwRobot(round, round.mode === 'CHEAT' ? counter[round.visitor] : round.committed);
+}
+
+function countdown(round, beat) {
+  state('COUNTDOWN', `Beat ${4 - beat} of 3`, beat);
+  if (!reducedMotion.matches) {
+    armTap?.cancel();
+    armTap = countdownArm.animate([{ transform: 'rotate(-14deg)' }, { transform: 'rotate(5deg)' }, { transform: 'rotate(-14deg)' }], { duration: 240, easing: 'ease-in-out' });
+  }
+  trace('COUNTDOWN · Arm tap and voice cue ' + (4 - beat) + '.');
+  schedule(() => beat === 1 ? throwBeat(round) : countdown(round, beat - 1), 350);
+}
+
+async function start() {
+  if (busy || latched) return;
+  const round = {mode, visitor: visitorThrow, fault: el('fault').value, committed: null};
+  activeRound = round;
+  busy = true;
+  controls();
+  started = performance.now();
+  events.replaceChildren();
+  el('fair-proof').hidden = true;
+  el('fair-opening').hidden = true;
+  el('pose').textContent = 'Rock';
+  shutter('open');
+  state('READY', round.mode + ' selected');
+  trace(`READY · ${round.mode} latched for this round.`);
+  if (round.mode === 'FAIR') {
+    if (round.fault === 'shutter') {
+      schedule(() => end('Shutter closure could not be verified'), 300);
+      return;
+    }
+    shutter('closed');
+    try {
+      const options = Object.keys(counter);
+      const sample = new Uint8Array(1);
+      do { crypto.getRandomValues(sample); } while (sample[0] === 255);
+      round.committed = options[sample[0] % options.length];
+      round.id = randomHex(16);
+      round.secret = randomHex(24);
+      round.hash = await commitment(round, round.committed);
+    } catch {
+      if (activeRound === round) end('FAIR requires Web Crypto to publish a commitment');
+      return;
+    }
+    if (activeRound !== round) return;
+    el('fair-round').textContent = round.id;
+    el('fair-commitment').textContent = round.hash;
+    el('fair-proof').hidden = false;
+    trace('READY · Shutter closed and confirmed. Robot move committed before the throw. SHA-256 published before the countdown.');
+  }
+  schedule(() => countdown(round, 3), round.mode === 'FAIR' ? 1000 : 350);
+}
+
+for (const button of document.querySelectorAll('button[data-mode],button[data-throw]')) {
+  button.addEventListener('click', () => {
+    const group = button.dataset.mode ? 'mode' : 'throw';
+    for (const option of document.querySelectorAll(`button[data-${group}]`)) {
+      option.setAttribute('aria-pressed', String(option === button));
+    }
+    if (group === 'mode') stage.dataset.mode = mode = button.dataset.mode;
+    else visitorThrow = button.dataset.throw;
+  });
+}
+el('start').addEventListener('click', start);
+el('stop').addEventListener('click', () => end('Emergency stop latched', true));
+el('reset').addEventListener('click', () => {
+  latched = false;
+  shutter('open');
+  el('pose').textContent = 'Rock';
+  state('ATTRACT', 'Ready for a new round');
+  trace('RESET · Returned to idle. Start a new round manually.');
+  controls();
+});
+trace('ATTRACT · Waiting for a visitor.');
+</script>
+</body>
+</html>

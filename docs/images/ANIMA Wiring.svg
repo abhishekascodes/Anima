@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-labelledby="title description">
+  <title id="title">ANIMA power, control and head loom</title>
+  <desc id="description">The Pi runs the show and the ESP32-S3 mainboard controls five servos and three solenoids. An independent contactor cuts the actuator branches.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+    <style>
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#193344} .heading{font-size:19px;font-weight:700}
+      .detail{font-size:15px}.wire{fill:none;stroke:#477d93;stroke-width:3;marker-end:url(#arrow)}
+      .power{stroke:#aa5524}.box{fill:#fff;stroke:#91a8ae;stroke-width:1.5;rx:10}.switched{fill:#fff7ec;stroke:#b97842}
+    </style>
+  </defs>
+  <rect width="1400" height="1000" fill="#edf2f2"/>
+  <text x="52" y="67" font-size="40" font-weight="700">ANIMA / Wiring overview</text>
+  <text x="52" y="100" font-size="17">Pi 5 show host, custom ESP32-S3 actuator controller and independent E-stop</text>
+
+  <rect class="box" x="52" y="154" width="248" height="126"/>
+  <text class="heading" x="70" y="187">Raspberry Pi 5 · 8 GB</text>
+  <text class="detail" x="70" y="215">27 W USB-C PD adapter</text>
+  <text class="detail" x="70" y="239">M.2 HAT+ / 256 GB NVMe</text>
+  <text class="detail" x="70" y="263">CSI camera / HDMI proof display</text>
+
+  <rect class="box" x="440" y="154" width="269" height="126"/>
+  <text class="heading" x="458" y="187">ANIMA main PCB</text>
+  <text class="detail" x="458" y="215">J1 always-on 5 V logic</text>
+  <text class="detail" x="458" y="239">J2 3.3 V UART, TX/RX cross</text>
+  <text class="detail" x="458" y="263">J5 dry healthy contact</text>
+  <path class="wire" d="M300 213H438"/>
+  <text class="detail" x="315" y="200">UART + GND</text>
+
+  <rect class="box" x="812" y="154" width="536" height="126"/>
+  <text class="heading" x="831" y="187">Mainboard harness</text>
+  <text class="detail" x="831" y="216">J6 - J9 Hall ×7 and NTC ×3 · J10 controls · J11 radar</text>
+  <text class="detail" x="831" y="240">J12 - 16 servo PWM and return · J17 pixels · J18 BTL speaker</text>
+  <text class="detail" x="831" y="264">J19 switched 12 V · J20 - 22 coil outputs</text>
+  <path class="wire" d="M709 213H810"/>
+
+  <rect class="box" x="52" y="365" width="248" height="108"/>
+  <text class="heading" x="70" y="398">Camera Module 3</text>
+  <text class="detail" x="70" y="425">Fixed view of the throw zone</text>
+  <text class="detail" x="70" y="449">CSI ribbon to Pi; shutter on J16</text>
+  <path class="wire" d="M136 365V282"/>
+  <text class="detail" x="149" y="324">CSI</text>
+
+  <rect class="box switched" x="440" y="365" width="269" height="138"/>
+  <text class="heading" x="458" y="399">12 V / 10 A baseline</text>
+  <text class="detail" x="458" y="427">Commercial enclosed DC supply</text>
+  <text class="detail" x="458" y="451">Main input protection</text>
+  <text class="detail" x="458" y="475">Always-on 5 V logic / pixels</text>
+  <path class="wire power" d="M524 365V282"/>
+  <text class="detail" x="539" y="320">5 V logic</text>
+
+  <rect class="box switched" x="812" y="365" width="536" height="138"/>
+  <text class="heading" x="831" y="399">Latching E-stop and DC power disconnect</text>
+  <text class="detail" x="831" y="427">Fused output A: switched 12 V to J19 and coil drives</text>
+  <text class="detail" x="831" y="451">Fused output B: 6 V regulator to five servo power leads</text>
+  <text class="detail" x="831" y="475">Healthy auxiliary contact returns to J5</text>
+  <path class="wire power" d="M709 426H810"/>
+  <path class="wire power" d="M936 365V282"/>
+
+  <rect class="box" x="52" y="572" width="248" height="140"/>
+  <text class="heading" x="70" y="605">Owned HDMI display</text>
+  <text class="detail" x="70" y="633">Publish the full FAIR hash</text>
+  <text class="detail" x="70" y="657">before the first count beat</text>
+  <text class="detail" x="70" y="681">Reveal the move and secret</text>
+  <path class="wire" d="M52 239H28V631H50"/>
+  <text class="detail" x="44" y="551">Micro-HDMI to HDMI</text>
+
+  <rect class="box" x="440" y="572" width="269" height="140"/>
+  <text class="heading" x="458" y="605">Servo signal plugs</text>
+  <text class="detail" x="458" y="633">J12 pan · J13 tilt · J14 elbow</text>
+  <text class="detail" x="458" y="657">J15 jaw · J16 shutter</text>
+  <text class="detail" x="458" y="681">PWM and return on each plug</text>
+
+  <rect class="box" x="812" y="572" width="536" height="140"/>
+  <text class="heading" x="831" y="605">Five positional servos</text>
+  <text class="detail" x="831" y="633">DS3225 pan and elbow · MG996R tilt · MG90S jaw and shutter</text>
+  <text class="detail" x="831" y="657">Validate switched 6 V load and calibrate with horns detached</text>
+  <text class="detail" x="831" y="681">Provide protected cable flex and mechanical travel limits</text>
+  <path class="wire power" d="M1004 503V570"/>
+  <path class="wire" d="M709 628H810"/>
+
+  <rect class="box" x="52" y="777" width="1296" height="159"/>
+  <text class="heading" x="72" y="811">Power-off behavior and verification</text>
+  <text class="detail" x="72" y="841">Use a common DC return at distribution. Never connect the speaker's bridge outputs to DC return.</text>
+  <text class="detail" x="72" y="869">E-stop opens coil and servo power. Pi and main logic remain powered. Check rail decay and signal backfeed.</text>
+  <text class="detail" x="72" y="897">See INTEGRATION.md for connector pin numbers. Confirm the 12 V supply rating with the simultaneous load test.</text>
+</svg>
