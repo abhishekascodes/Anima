@@ -8,6 +8,10 @@ Built for **Hack Club Fallen** and showcasing at **Maker Faire Shenzhen 2026**.
 
 ## Project Showcase
 
+| Full 3D Kinematic Assembly (24 Limbs + 3-Axis Eye Gimbal) |
+| :---: |
+| ![ANIMA Full 3D Assembly](docs/images/full_3d_assembly.png) |
+
 | 3D Mainboard PCB Render | Schematic Architecture |
 | :---: | :---: |
 | ![ANIMA PCB 3D Render](docs/images/pcb_3d_render.png) | ![ANIMA Schematic Architecture](docs/images/schematic_diagram.png) |
