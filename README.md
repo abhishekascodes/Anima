@@ -4,6 +4,8 @@ An interactive, tabletop humanoid upper torso robot built for **Hack Club Fallen
 
 Designed and built by Abhishek A S.
 
+![ANIMA Robot Showcase](docs/images/ANIMA%20Studio%20Assembly.png)
+
 ---
 
 ## What is ANIMA?
@@ -18,9 +20,13 @@ Instead of just wiggling motors on a stand, ANIMA actually plays against visitor
 
 ## Project Showcase
 
-| Tabletop Torso Assembly (420 x 380 x 550 mm) | Internal Cutaway & Tendon Routing |
+| Hero Striker View | Expressive Portrait View |
 | :---: | :---: |
-| ![ANIMA Torso Assembly](docs/images/ANIMA%20RPS%20Assembly.png) | ![ANIMA Cutaway](docs/images/ANIMA%20RPS%20Electronics%20Cutaway.png) |
+| ![ANIMA Striker Angle](docs/images/ANIMA%20Studio%20Striker%20Side.png) | ![ANIMA Portrait](docs/images/ANIMA%20Studio%20Portrait.png) |
+
+| Internal Cutaway & Tendon Routing | High-Speed Playing Hand |
+| :---: | :---: |
+| ![ANIMA Cutaway](docs/images/ANIMA%20RPS%20Electronics%20Cutaway.png) | ![ANIMA Playing Hand](docs/images/ANIMA%20Studio%20Hand.png) |
 
 | Custom 4-Layer Controller (KiCad 10) | Multi-Sheet Schematic |
 | :---: | :---: |
@@ -63,8 +69,11 @@ The entire robot runs on a custom 4-layer PCB (`ANIMA_RPS_Controller`):
 
 ```
 ├── cad/
-│   ├── ANIMA_RPS_Upper_Torso.FCStd   # Native FreeCAD master assembly
-│   ├── ANIMA_RPS_Upper_Torso.step    # Full CAD assembly STEP
+│   ├── ANIMA Studio.blend            # Master editable Blender studio model
+│   ├── ANIMA Studio.glb              # Complete 3D interactive GLB asset
+│   ├── ANIMA Studio Fairing Envelopes.step # Exterior aerodynamic fairing envelopes
+│   ├── ANIMA_RPS_Upper_Torso.FCStd   # Native FreeCAD mechanical assembly
+│   ├── ANIMA_RPS_Upper_Torso.step    # Full structural CAD assembly STEP
 │   ├── anima_rps_assembly.py         # Parametric CadQuery assembly script
 │   └── Parts/                        # 41 individual modeled leaf part STEP files
 ├── electronics/
@@ -78,8 +87,8 @@ The entire robot runs on a custom 4-layer PCB (`ANIMA_RPS_Controller`):
 ├── docs/
 │   ├── FAIR_PROTOCOL.md              # Anti-cheat proof specification
 │   ├── INTEGRATION.md                # System integration and harness guide
-│   └── images/                       # Renders and schematics
-├── bom.csv                           # Full 94-line exhibit BOM (₹58,120.68)
+│   └── images/                       # High-res renders, studio renders and schematics
+├── bom.csv                           # Itemized USD grant request ($757.20)
 └── README.md
 ```
 
@@ -87,7 +96,7 @@ The entire robot runs on a custom 4-layer PCB (`ANIMA_RPS_Controller`):
 
 ## Verification & Status
 
-- **CAD Envelope:** Checked at 420 x 380 x 550 mm with 41 unique modeled parts.
+- **CAD Envelope:** Checked at 420 x 380 x 550 mm with 41 unique modeled leaf parts and exterior fairing envelopes.
 - **KiCad ERC:** 0 violations, 0 warnings.
 - **KiCad DRC:** 0 violations, 0 unconnected items.
 - **Firmware:** Compiled cleanly under PlatformIO for ESP32-S3.
