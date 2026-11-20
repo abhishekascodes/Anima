@@ -95,6 +95,7 @@ ANIMA takes a different approach:
 
 ```text
 ├── cad/
+│   ├── anima_organism.scad    # Parametric OpenSCAD full organism & limb model
 │   └── exports/               # STEP files for every modeled link, bracket, and chassis plate
 │       ├── ANIMA_Upper_Link_120mm.step
 │       ├── ANIMA_Lower_Link_100mm.step
@@ -123,7 +124,8 @@ ANIMA takes a different approach:
 
 ## CAD & Onshape Source
 
-All 3D CAD modeling is developed parametrically in Onshape:
+All 3D CAD modeling is developed parametrically in OpenSCAD and Onshape:
+- Parametric 3D Organism Script: [`cad/anima_organism.scad`](cad/anima_organism.scad)
 - Public Onshape Assembly URL: `https://cad.onshape.com/documents/anima-robotics`
 - All individual part STEP exports are available directly in [`cad/exports/`](cad/exports/).
 
