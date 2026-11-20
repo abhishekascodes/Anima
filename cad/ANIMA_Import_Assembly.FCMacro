@@ -1,0 +1,26 @@
+"""Create a local FreeCAD document from the labeled ANIMA assembly STEP."""
+from pathlib import Path
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Import
+from PySide import QtWidgets
+
+
+filename, _ = QtWidgets.QFileDialog.getOpenFileName(
+    None, 'Select ANIMA_RPS_Upper_Torso.step', '', 'STEP assembly (*.step *.stp)'
+)
+if filename:
+    source = Path(filename)
+    output = source.with_suffix('.FCStd')
+    if output.exists():
+        raise RuntimeError(f'{output} already exists; move it before importing again.')
+    doc = App.newDocument('ANIMA_RPS_Upper_Torso')
+    Import.insert(str(source), doc.Name)
+    doc.recompute()
+    if not any(getattr(obj, 'Shape', None) and not obj.Shape.isNull() for obj in doc.Objects):
+        App.closeDocument(doc.Name)
+        raise RuntimeError('No solids were imported.')
+    Gui.activeDocument().activeView().viewAxonometric()
+    Gui.activeDocument().activeView().fitAll()
+    doc.saveAs(str(output))

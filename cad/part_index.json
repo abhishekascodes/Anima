@@ -1,0 +1,306 @@
+{
+  "base_plate": {
+    "classification": "Modelled part",
+    "description": "420 x 380 x 6 blank, hole pattern is provisional"
+  },
+  "service_top_deck": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "estop_pod": {
+    "classification": "Modelled part",
+    "description": "Low-voltage stop enclosure with provisional 22 mm operator hole; verify depth and fasteners."
+  },
+  "estop_mount_tab": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "estop_operator_envelope": {
+    "classification": "Envelope",
+    "description": "Representative latching mushroom operator. Confirm selected body and contact depth."
+  },
+  "base_side_panel": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "status_fascia": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "front_control_fascia": {
+    "classification": "Modelled part",
+    "description": "Provisional 6 mm toggle bushing and 16 mm pushbutton cutouts. Fit actual panel parts."
+  },
+  "rubber_foot": {
+    "classification": "Envelope",
+    "description": "Rubber foot reference"
+  },
+  "spine_rail": {
+    "classification": "Modelled part",
+    "description": "Two 20 x 40 rectangular structural rail envelopes"
+  },
+  "spine_crossmember": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "rear_cover": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "backbone_cover": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "chest_front_shell": {
+    "classification": "Modelled part",
+    "description": "Cut from flat stock. Includes the display opening and four speaker slots."
+  },
+  "speaker_envelope": {
+    "classification": "Envelope",
+    "description": "Provisional 4 ohm enclosed speaker envelope behind the chest slots."
+  },
+  "display_bezel": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "display_panel_envelope": {
+    "classification": "Envelope",
+    "description": "Replace with exact 8 x 32 module dimensions"
+  },
+  "display_bar_1_1": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_1_2": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_1_3": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_2_1": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_2_2": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_2_3": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_3_1": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_3_2": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "display_bar_3_3": {
+    "classification": "Envelope",
+    "description": "Illustrative LEDs in the chest module"
+  },
+  "playing_shoulder_shell": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "countdown_shoulder_shell": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "shoulder_support": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "neck_pedestal": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "neck_turntable": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "neck_tilt_cheek": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "ds3225_envelope": {
+    "classification": "Envelope",
+    "description": "Provisional DS3225 pan and countdown elbow volume."
+  },
+  "mg996r_envelope": {
+    "classification": "Envelope",
+    "description": "Provisional MG996R head tilt volume."
+  },
+  "head_rear_shell": {
+    "classification": "Modelled part",
+    "description": "Hollow shell with open service side"
+  },
+  "head_face_plate": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "smoked_visor": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "eye_diffuser": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "jaw_shell": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "microservo_envelope": {
+    "classification": "Envelope",
+    "description": "Provisional MG90S volume"
+  },
+  "fixed_camera_arm": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "camera_mount_plate": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "camera_board_envelope": {
+    "classification": "Envelope",
+    "description": "Camera Module 3 envelope. Verify the throw-zone crop with actual optics."
+  },
+  "camera_lens_envelope": {
+    "classification": "Envelope",
+    "description": "Camera lens envelope"
+  },
+  "camera_shutter_blade": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "countdown_upper_link": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "countdown_forearm_shell": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "countdown_striker_pad": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "strike_plate_post": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "strike_plate": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "right_arm_support": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "right_forearm_shell": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "wrist_bracket": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "playing_palm": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "long_finger_base": {
+    "classification": "Modelled part",
+    "description": "Tendon and two pivot interfaces. Bore compensation required on print test."
+  },
+  "short_finger_base": {
+    "classification": "Modelled part",
+    "description": "Tendon and two pivot interfaces. Bore compensation required on print test."
+  },
+  "finger_tip": {
+    "classification": "Modelled part",
+    "description": "Tendon and two pivot interfaces. Bore compensation required on print test."
+  },
+  "thumb_base": {
+    "classification": "Modelled part",
+    "description": "Tendon and two pivot interfaces. Bore compensation required on print test."
+  },
+  "tendon_guide": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "solenoid_envelope": {
+    "classification": "Envelope",
+    "description": "Oversize JF-0730B-class envelope, check actual SKU"
+  },
+  "tendon_route_1": {
+    "classification": "Envelope",
+    "description": "Tendon routing study"
+  },
+  "tendon_route_2": {
+    "classification": "Envelope",
+    "description": "Tendon routing study"
+  },
+  "tendon_route_3": {
+    "classification": "Envelope",
+    "description": "Tendon routing study"
+  },
+  "guard_sheet": {
+    "classification": "Modelled part",
+    "description": "Front guard envelope. Check hand sweep and opening with hardware."
+  },
+  "guard_side": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "guard_bottom_rail": {
+    "classification": "Modelled part",
+    "description": "Modelled component"
+  },
+  "controller_board_envelope": {
+    "classification": "Envelope",
+    "description": "PCB reference envelope from the native KiCad design"
+  },
+  "logic_connectors_envelope": {
+    "classification": "Envelope",
+    "description": "Reserve connector and cable space in base"
+  },
+  "mini_power_envelope": {
+    "classification": "Envelope",
+    "description": "DC distribution and regulator volume only. Size mains supply separately."
+  },
+  "pi5_board_envelope": {
+    "classification": "Envelope",
+    "description": "Pi 5 8 GB board outline with provisional standoff placement."
+  },
+  "pi5_port_envelope": {
+    "classification": "Envelope",
+    "description": "USB and Ethernet volume. Keep the negative X service approach free."
+  },
+  "pi5_cooler_envelope": {
+    "classification": "Envelope",
+    "description": "Reserve volume for Raspberry Pi Active Cooler."
+  },
+  "pi5_nvme_hat_envelope": {
+    "classification": "Envelope",
+    "description": "M.2 HAT+ and 256 GB NVMe assembly reference. Check underside clearances and airflow."
+  },
+  "pi5_nvme_envelope": {
+    "classification": "Envelope",
+    "description": "Raspberry Pi 256 GB M.2 SSD reference."
+  },
+  "toggle_envelope": {
+    "classification": "Envelope",
+    "description": "Metal mode switch reference"
+  },
+  "arcade_button_envelope": {
+    "classification": "Envelope",
+    "description": "Buttons on external fascia"
+  }
+}
