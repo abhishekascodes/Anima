@@ -69,6 +69,7 @@ The entire robot runs on a custom 4-layer PCB (`ANIMA_RPS_Controller`):
 
 ```
 ├── cad/
+│   ├── README.md                     # Kinematics breakdown, joint limits and 3D print specs
 │   ├── ANIMA Studio.blend            # Master editable Blender studio model
 │   ├── ANIMA Studio.glb              # Complete 3D interactive GLB asset
 │   ├── ANIMA Studio Fairing Envelopes.step # Exterior aerodynamic fairing envelopes
