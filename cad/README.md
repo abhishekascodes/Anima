@@ -47,3 +47,15 @@ ANIMA combines parametric mechanical engineering with ergonomic exterior fairing
   * Hinge points use 688ZZ radial ball bearings (8 mm OD, 3 mm ID, 4 mm thickness) so motor splines experience zero radial shear force.
   * M3x4x5 brass heat-set inserts on all frame connections.
   * Braided Dyneema line (0.8 mm, 100 lb test) for low-friction finger tendon routing through PTFE guide sleeves.
+
+---
+
+## Tolerance Tuning & Pre-Print Iterations
+
+While waiting for the physical hardware and electronics to arrive, I went through the entire CAD model part by part to dial in the tolerances for 3D printing so everything fits on the first try without sanding:
+
+* **688ZZ Bearing Pockets:** Opened up from nominal 8.00 mm to 8.08 mm to compensate for PETG shrinkage. Bearings press in snug with firm thumb pressure without cracking layer lines.
+* **M3 Heat-Set Insert Bosses:** Sized at 4.20 mm diameter with a 1 degree lead-in taper so the brass inserts seat straight when heated with a soldering iron tip.
+* **Tendon Guide Chamfers:** Added 1.5 mm smooth radius chamfers to every PTFE tube entry and exit hole on the fingers so the high-speed Kevlar line never catches or frays under snap tension.
+* **Neck Pan & Shoulder Shell Clearance:** Widened the neck-to-torso gap to 1.8 mm to eliminate any friction or rubbing during rapid 180 degree visitor tracking pans.
+* **Hinge Pin Fits:** Sized rotating hinge bores at 3.15 mm for smooth slip-fit rotation over M3 shoulder screws without binding or wobble.
