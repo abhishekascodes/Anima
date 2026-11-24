@@ -1,10 +1,4 @@
-"""ANIMA Tabletop RPS Show Controller and Computer Vision Pipeline.
-
-Runs on the Raspberry Pi 5 to drive exhibit games at Maker Faire Shenzhen.
-Integrates the SHA-256 FAIR anti-cheat commitment protocol, high-speed
-ESP32-S3 serial communication, OpenCV player hand gesture recognition,
-and booth exhibit state machine.
-"""
+# game engine and opencv hand detection for anima
 
 from dataclasses import dataclass
 from enum import Enum, auto
@@ -25,6 +19,8 @@ import uuid
 
 import cv2
 import numpy as np
+
+from audio_controller import SoundManager
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s: %(message)s")
 logger = logging.getLogger("ANIMA")
@@ -290,6 +286,7 @@ class ExhibitGameController:
         self.anima_score = 0
         self.round_history: List[Dict] = []
         self.camera = None
+        self.sound = SoundManager(serial_bridge=self.bridge)
         self._init_camera()
 
     def _init_camera(self):
@@ -327,6 +324,7 @@ class ExhibitGameController:
         for beat, state in enumerate([GameState.COUNTDOWN_1, GameState.COUNTDOWN_2, GameState.COUNTDOWN_3], 1):
             self.state = state
             logger.info("COUNTDOWN BEAT %d...", beat)
+            self.sound.play("countdown_pip.wav")
             # Striker arm drops then lifts
             self.bridge.send("SERVO 2 1750")  # Striker drop
             time.sleep(0.18)
@@ -335,6 +333,7 @@ class ExhibitGameController:
 
         # 4. INSTANT MECHANICAL THROW: Fire solenoid tendon lines
         self.state = GameState.THROW
+        self.sound.play("countdown_throw.wav")
         throw_start = time.perf_counter()
         self.bridge.send(f"THROW {self.active_proof.throw}")
         throw_latency_ms = (time.perf_counter() - throw_start) * 1000
@@ -354,9 +353,11 @@ class ExhibitGameController:
         outcome = self._evaluate_winner(self.active_proof.throw, visitor_gesture)
         if outcome == "ANIMA":
             self.anima_score += 1
+            self.sound.play("round_win.wav")
             self.bridge.send("SERVO 3 1750")  # Jaw open celebratory animation
         elif outcome == "VISITOR":
             self.visitor_score += 1
+            self.sound.play("round_lose.wav")
             self.bridge.send("SERVO 1 1350")  # Head nod of respect
         time.sleep(0.2)
         self.bridge.send("SERVO 3 1500")

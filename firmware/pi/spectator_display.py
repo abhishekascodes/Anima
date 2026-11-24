@@ -1,9 +1,4 @@
-"""ANIMA Spectator Display Generator and Live Booth UI.
-
-Generates the 1080p HDMI spectator screen for visitors at Maker Faire Shenzhen.
-Shows live SHA-256 pre-commitments, physical shutter blackout status,
-actuation latency, and cryptographic proof verifications.
-"""
+# hdmi spectator screen layout for maker faire booth
 
 import math
 import os

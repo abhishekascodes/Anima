@@ -1,4 +1,4 @@
-"""Batch script to render facial emotion expressions for ANIMA in Blender."""
+# render facial expressions in blender
 
 import math
 import bpy

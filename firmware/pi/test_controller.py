@@ -1,4 +1,4 @@
-"""Unit and integration test suite for ANIMA show controller and FAIR protocol."""
+# bench test suite for fair hashing and serial bridge
 
 import unittest
 import numpy as np

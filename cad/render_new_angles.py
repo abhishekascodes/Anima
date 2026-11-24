@@ -1,4 +1,4 @@
-"""Blender batch render script for new ANIMA angles and colorways."""
+# render camera angles in blender
 
 import math
 import bpy
